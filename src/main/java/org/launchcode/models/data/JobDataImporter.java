@@ -32,7 +32,7 @@ public class JobDataImporter {
         if (isDataLoaded) {
             return;
         }
-
+    //there are dift kinds of exceptions checked and unchecked(below)
         try {
 
             // Open the CSV file and set up pull out column header info and records
@@ -83,7 +83,7 @@ public class JobDataImporter {
 
             // flag the data as loaded, so we don't do it twice
             isDataLoaded = true;
-
+        //checked exceptions
         } catch (IOException e) {
             System.out.println("Failed to load job data");
             e.printStackTrace();
