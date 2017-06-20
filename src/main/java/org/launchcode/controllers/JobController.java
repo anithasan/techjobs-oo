@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,7 +24,7 @@ public class JobController {
 
     // The detail display for a given Job at URLs like /job?id=17
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String index(Model model, int id) {
+    public String index( Model model, int id) {
 
         // TODO #1 - get the Job with the given ID and pass it into the view
         Job someJob = jobData.findById(id);
@@ -55,8 +56,10 @@ public class JobController {
                         new PositionType(jobForm.getPositionType()), new CoreCompetency(jobForm.getCoreCompetency()));
 
        jobData.add(temp);
-       model.addAttribute("job", temp);
-       return "job-detail";
+
+       ///job/?id=197
+       String suffix = "/job/?id="+temp.getId();
+       return "redirect:"+suffix;
     }
 
 }
